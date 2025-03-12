@@ -1,9 +1,36 @@
-from fastapi import FastAPI, Path
+from fastapi import FastAPI
 
 app = FastAPI()
 
 
-@app.get("/user/{username}/{age}")
-async def login(username: str = Path(min_length=3, max_length=15, description='Enter your username', example='Ilya'),
-                age: int = Path(ge=0, le=100, description="Enter your age")) -> dict:
-    return {"user": username, "age": age}
+messages_db = {0: "First post in FastAPI"}
+
+
+@app.get("/")
+async def get_all_messages() -> str:
+    return 'asdf'
+
+
+@app.get("/message/{message_id}")
+async def get_message(message_id: int) -> str:
+    pass
+
+
+@app.post("/message")
+async def create_message(message: str) -> str:
+    pass
+
+
+@app.put("/message/{message_id}")
+async def update_message(message_id: int, message: str) -> str:
+    pass
+
+
+@app.delete("/message/{message_id}")
+async def delete_message(message_id: int) -> str:
+    pass
+
+
+@app.delete("/")
+async def kill_message_all() -> str:
+    pass
